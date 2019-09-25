@@ -2,12 +2,14 @@ from setuptools import setup, find_packages
 
 setup(
     name='hello',
-    modules=(
+    use_scm_version=True,
+    py_modules=(
         'hello',
     ),
     setup_requires=[
         "pytest-runner",
-        "wheel"
+        "wheel",
+        "setuptools_scm"
     ],
     tests_require=[
         "pytest"
