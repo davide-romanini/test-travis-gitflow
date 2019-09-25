@@ -1,15 +1,6 @@
 language: python
-os:
-  - linux
-  - osx
-  - windows
 
 matrix:
-  exclude:
-    - os: osx
-      language: python
-    - os: windows
-      language: python
   include:
     - os: osx
       language: generic
@@ -18,8 +9,8 @@ matrix:
       language: bash
 
 before_install:
-  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew python3 ; fi
-  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then choco install -y python; fi
+  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew install python3 ; fi
+  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then choco install -y python; python -m pip install -U pip; fi
 
 env:
 - SETUPTOOLS_SCM_PRETEND_VERSION=$TRAVIS_TAG
