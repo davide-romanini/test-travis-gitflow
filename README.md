@@ -3,3 +3,6 @@
 # README
 
 Testing travis and git flow strategies.
+
+v0.0.7:
+ - new welcome feature
