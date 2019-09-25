@@ -7,6 +7,12 @@ script:
   - pytest
   - python setup.py sdist
 
+branches:
+  only:
+  - master
+  - develop
+  - /feature\/.*/
+
 deploy:
   name: $TRAVIS_TAG
   body: New version $TRAVIS_TAG available
@@ -19,4 +25,4 @@ deploy:
   draft: true
   on:
     branch: master
-    condition: -n "$TRAVIS_TAG"
+    condition: -n $TRAVIS_TAG
