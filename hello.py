@@ -1,2 +1,2 @@
-def hello(to):
-    return "Hello %s, welcome" % to
+def hello(name):
+    return "Hello %s, welcome" % name
