@@ -1,23 +1,23 @@
 language: python
 env:
-- SETUPTOOLS_SCM_PRETEND_VERSION=$TRAVIS_TAG
+  - SETUPTOOLS_SCM_PRETEND_VERSION=$TRAVIS_TAG
 install:
-- pip install -r requirements.txt
+  - pip install -r requirements.txt
 script:
-- pytest
-- gitchangelog > CHANGELOG.md
-- python setup.py sdist
+  - pytest
+  - gitchangelog > CHANGELOG.md
+  - python setup.py sdist
 branches:
   only:
-  - develop
-  - "/^\/feature\/.*/"
-  - "/^v\\d.*/"
+    - develop
+    - "/^\/feature\/.*/"
+    - "/^v\\d.*/"
 
 before_deploy:
   - gitchangelog HEAD~..HEAD > RELEASE_NOTES.md
-  
+
 deploy:
-  name: $TRAVIS_TAG  
+  name: $TRAVIS_TAG
   release_notes_file: RELEASE_NOTES.md
   provider: releases
   skip_cleanup: true
