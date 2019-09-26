@@ -9,7 +9,8 @@ script:
 - python setup.py sdist
 branches:
   only:
-  - develop  
+  - develop
+  - "/^\/feature\/*"
   - "/^v\\d.*/"
 
 before_deploy:
