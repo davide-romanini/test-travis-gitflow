@@ -6,4 +6,4 @@ Testing travis and git flow strategies.
 
 # A new section here
 
-TODO
+Welcome
