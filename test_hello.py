@@ -1,4 +1,4 @@
-from hello import hello, add
+from hello import hello, add, minus
 
 def test_hello():
     assert hello("David") == "Hello David, welcome"
@@ -8,3 +8,6 @@ def test_hello():
 
 def test_add():
     assert add(5, 1) == 6
+
+def test_minus():
+    assert minus(5, 1) == 4
