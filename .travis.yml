@@ -5,6 +5,7 @@ install:
 - pip install -r requirements.txt
 script:
 - pytest
+- gitchangelog > CHANGELOG.md
 - python setup.py sdist
 branches:
   only:

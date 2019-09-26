@@ -10,3 +10,4 @@ unrarsrc
 build
 .vscode
 .pytest_cache/
+CHANGELOG*
