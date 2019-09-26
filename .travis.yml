@@ -14,7 +14,7 @@ branches:
     - "/^v\\d.*/"
 
 before_deploy:
-  - gitchangelog HEAD~..HEAD > RELEASE_NOTES.md
+  - gitchangelog $(git describe --abbrev=0 HEAD~)..HEAD > RELEASE_NOTES.md
 
 deploy:
   name: $TRAVIS_TAG
