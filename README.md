@@ -4,8 +4,6 @@
 
 Testing travis and git flow strategies.
 
-Includes the hello module.
-
 # A new section here
 
 TODO
