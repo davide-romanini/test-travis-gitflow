@@ -5,9 +5,3 @@
 Testing travis and git flow strategies.
 
 Includes the hello module.
-
-v0.0.7:
- - new welcome feature
-
-v0.0.8:
- - simplifications
