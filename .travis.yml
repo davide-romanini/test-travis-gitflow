@@ -12,9 +12,12 @@ branches:
   - develop  
   - "/^v\\d.*/"
 
+before_deploy:
+  - gitchangelog HEAD~..HEAD > RELEASE_NOTES.md
+  
 deploy:
   name: $TRAVIS_TAG  
-  release_notes_file: CHANGELOG.md
+  release_notes_file: RELEASE_NOTES.md
   provider: releases
   skip_cleanup: true
   api_key:
