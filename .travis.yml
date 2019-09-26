@@ -13,8 +13,8 @@ branches:
   - "/^v\\d.*/"
 
 deploy:
-  name: $TRAVIS_TAG
-  body: New version $TRAVIS_TAG available
+  name: $TRAVIS_TAG  
+  release_notes_file: CHANGELOG.md
   provider: releases
   skip_cleanup: true
   api_key:
