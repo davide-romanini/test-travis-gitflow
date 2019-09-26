@@ -10,6 +10,7 @@ script:
 branches:
   only:
     - develop
+    - "/^\\/feature\\/.*/"
     - "/^v\\d.*/"
 
 before_deploy:
