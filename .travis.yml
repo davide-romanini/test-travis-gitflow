@@ -44,6 +44,5 @@ deploy:
   file_glob: true
   file: dist/*
   draft: true
-  edge: true
   on:
     tags: true
