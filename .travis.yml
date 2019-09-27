@@ -6,15 +6,10 @@ matrix:
     - os: osx
       language: generic
       osx_image: xcode8.3
-      env: 
-        global:
-          - PYTHON=python3
-          - PIP=pip3
+      env: PYTHON=python3 PIP=pip3
     - os: windows
       language: bash
-      env: 
-        global:
-          - PATH=/C/Python37:/C/Python37/Scripts:$PATH
+      env: PATH=/C/Python37:/C/Python37/Scripts:$PATH
 
 env:
   global:
