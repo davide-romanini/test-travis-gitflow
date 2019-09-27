@@ -24,11 +24,15 @@ install:
   - if [ "$TRAVIS_OS_NAME" != "linux" ]; then $PIP install -r requirements.txt ; fi
 script:
   - pytest
+  - gitchangelog > CHANGELOG.md
   - $PYTHON setup.py sdist
 branches:
   only:
     - develop  
     - "/^v\\d.*/"
+
+before_deploy:
+  - gitchangelog $(git describe --abbrev=0 HEAD~)..HEAD > RELEASE_NOTES.md
 
 deploy:
   name: $TRAVIS_TAG
