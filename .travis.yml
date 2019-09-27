@@ -8,6 +8,7 @@ matrix:
     #  osx_image: xcode8.3  
     - os: windows
       language: bash
+      env: PATH=/C/Python37:$PATH
 
 env:
   - SETUPTOOLS_SCM_PRETEND_VERSION=$TRAVIS_TAG
