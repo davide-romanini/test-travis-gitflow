@@ -1,20 +1,34 @@
 language: python
+
+matrix:
+  include:
+    - os: linux
+    - os: osx
+      language: generic
+      osx_image: xcode8.3
+      env: PYTHON=python3 PIP=pip3
+    - os: windows
+      language: bash
+      env: PATH=/C/Python37:/C/Python37/Scripts:$PATH
+
 env:
-  - SETUPTOOLS_SCM_PRETEND_VERSION=$TRAVIS_TAG
+  global:
+    - PYTHON=python
+    - PIP=pip
+    - SETUPTOOLS_SCM_PRETEND_VERSION=$TRAVIS_TAG
+
+before_install:
+  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then choco install -y python ; fi
+  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew upgrade python3 ; fi
 install:
-  - pip install -r requirements.txt
+  - if [ "$TRAVIS_OS_NAME" != "linux" ]; then $PIP install -r requirements.txt ; fi
 script:
   - pytest
-  - gitchangelog > CHANGELOG.md
-  - python setup.py sdist
+  - $PYTHON setup.py sdist
 branches:
   only:
-    - develop
-    - "/^\\/feature\\/.*/"
+    - develop  
     - "/^v\\d.*/"
-
-before_deploy:
-  - gitchangelog $(git describe --abbrev=0 HEAD~)..HEAD > RELEASE_NOTES.md
 
 deploy:
   name: $TRAVIS_TAG
