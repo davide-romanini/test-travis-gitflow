@@ -1,48 +1,10 @@
-language: python
-
-matrix:
-  include:
-    - os: linux
-    - os: osx
-      language: generic
-      osx_image: xcode8.3
-      env: PYTHON=python3 PIP=pip3
-    - os: windows
-      language: bash
-      env: PATH=/C/Python37:/C/Python37/Scripts:$PATH
-
-env:
-  global:
-    - PYTHON=python
-    - PIP=pip
-    - SETUPTOOLS_SCM_PRETEND_VERSION=$TRAVIS_TAG
-
-before_install:
-  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then choco install -y python ; fi
-  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew upgrade python3 ; fi
-install:
-  - $PIP install -r requirements.txt
+language: bash
+os: windows
+      
 script:
-  - pytest
-  - gitchangelog > CHANGELOG.md
-  - $PYTHON setup.py sdist
+  - cmd.exe /k ""C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\Common7\Tools\VsDevCmd.bat" & powershell" 
+  - msbuild
 branches:
   only:
     - develop  
     - "/^v\\d.*/"
-
-before_deploy:
-  - gitchangelog $(git describe --abbrev=0 HEAD~)..HEAD > RELEASE_NOTES.md
-
-deploy:
-  name: $TRAVIS_TAG
-  release_notes_file: RELEASE_NOTES.md
-  provider: releases
-  skip_cleanup: true
-  api_key:
-    secure: OO942cRHDc3MdOV7Ngs247Wv81Qq6G24k4aoq55cXlZQyQ5Slsrdm7ynN4eJcXZM2WQj1gLYrqVH7TVKkZlLMewzn+gTrJSQ5ED8hmPEX9DBysL8iJG2YaVy87fkXAOkZ4PM0O7kJuj7dP9AJHac04xQ+Jga1lZu4RaiNl8WWU/JJmiOmPBbMs2hFmolcbppj4oEFKBIl8Yd8/qJYYniwJC0tQSWfO7qO8Pknc3h0oixKfUXaKuXVT0M8aEwToCvNB7Jx5Ck0A+XWL34fboUCqy0bSjji/8jTo1bIrLxe0wP1c6YEFMe1pExYjPTqh6/fGJ33R2YbBjQsNPlVOPovjq+sYAtQJkrb9KZZQBXvYbx8160eW+OY4QEDvUnJhyVpfCLKoWBYaXPJ2HVyiGqyIwLYGMJZKAu1lshUPi9ZzQV+akVx+oErjqy9PTnmkNVnw3llR/MGLi1C0JL8iEh6cLqCeDRR9sjUcjE/oaAWcIaJs3MrvyDztm0Um59ZDRjmbSMZw0SfYcHdM9g2k++SnB4GixqwjErHeTzhoPe+mY6v5M3rG2x++rkmDypB51TyE18lkMJw1WiROBhCTA9QffxmWGmaNT/40BDYWvtfmrAWPmDibc5YL80LrLVlzsxUYGAUh1xC1q21aeL9odU7wYwPVNsEd+7D/rSmh4Zv7s=
-  file_glob: true
-  file: dist/*
-  draft: true
-  on:
-    tags: true
